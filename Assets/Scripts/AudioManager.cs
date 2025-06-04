@@ -1,22 +1,21 @@
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
-
-    [Header("Audio Sources")]
-    [SerializeField] private AudioSource bgmSource; // Background music source
-    [SerializeField] private AudioSource sfxSource; // Sound effects source
 
     [Header("Volume Settings")]
     [Range(0f, 1f)] public float masterVolume = 1f;
     [Range(0f, 1f)] public float bgmVolume = 1f;
     [Range(0f, 1f)] public float sfxVolume = 1f;
 
-    [Header("Audio Clips")]
-    public List<AudioClip> bgmClips;
-    public List<AudioClip> sfxClips;
+    [Header("FMOD Events")]
+    public List<EventReference> bgmEvents; // List of FMOD event references for BGM
+
+    private EventInstance currentBGMInstance;
 
     private void Awake()
     {
@@ -31,71 +30,70 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateAudioSourceVolumes();
+        UpdateVolumeSettings();
     }
 
-    // Update volumes based on settings
-    private void UpdateAudioSourceVolumes()
+    // Update FMOD volume settings
+    private void UpdateVolumeSettings()
     {
-        if (bgmSource != null)
-            bgmSource.volume = masterVolume * bgmVolume;
-        if (sfxSource != null)
-            sfxSource.volume = masterVolume * sfxVolume;
+        RuntimeManager.StudioSystem.setParameterByName("MasterVolume", masterVolume);
+        RuntimeManager.StudioSystem.setParameterByName("BGMVolume", bgmVolume);
+        RuntimeManager.StudioSystem.setParameterByName("SFXVolume", sfxVolume);
     }
 
     // Play background music
-    public void PlayBGM(string clipName, bool loop = true)
+    public void PlayBGM(EventReference eventReference, bool loop = true)
     {
-        AudioClip clip = bgmClips.Find(c => c.name == clipName);
-        if (clip == null)
+        StopBGM(); // Stop any currently playing BGM
+
+        if (!bgmEvents.Contains(eventReference))
         {
-            Debug.LogWarning($"BGM Clip '{clipName}' not found!");
+            Debug.LogWarning($"BGM Event '{eventReference.Path}' not found!");
             return;
         }
 
-        bgmSource.clip = clip;
-        bgmSource.loop = loop;
-        bgmSource.Play();
+        currentBGMInstance = RuntimeManager.CreateInstance(eventReference);
+        if (loop)
+        {
+            currentBGMInstance.setParameterByName("Loop", 1);
+        }
+        currentBGMInstance.start();
     }
 
-    // Play sound effect
-    public void PlaySFX(string clipName)
+    // Play sound effect directly without central management
+    public static void PlaySFX(EventReference eventReference)
     {
-        AudioClip clip = sfxClips.Find(c => c.name == clipName);
-        if (clip == null)
-        {
-            Debug.LogWarning($"SFX Clip '{clipName}' not found!");
-            return;
-        }
-
-        sfxSource.PlayOneShot(clip, sfxVolume * masterVolume);
+        EventInstance sfxInstance = RuntimeManager.CreateInstance(eventReference);
+        sfxInstance.start();
+        sfxInstance.release(); // Release the instance after playing
     }
 
     // Stop background music
     public void StopBGM()
     {
-        if (bgmSource.isPlaying)
-            bgmSource.Stop();
+        if (currentBGMInstance.isValid())
+        {
+            currentBGMInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            currentBGMInstance.release();
+        }
     }
 
     // Adjust volume dynamically
     public void SetMasterVolume(float volume)
     {
         masterVolume = Mathf.Clamp01(volume);
-        UpdateAudioSourceVolumes();
+        UpdateVolumeSettings();
     }
 
     public void SetBGMVolume(float volume)
     {
         bgmVolume = Mathf.Clamp01(volume);
-        UpdateAudioSourceVolumes();
+        UpdateVolumeSettings();
     }
 
     public void SetSFXVolume(float volume)
     {
         sfxVolume = Mathf.Clamp01(volume);
-        UpdateAudioSourceVolumes();
+        UpdateVolumeSettings();
     }
-
-    [field: SerializeField] public float BGMVolume { get; private set; }
 }
