@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{8ee2a77c-9e52-483b-a518-7a25f1b2881f}">
+		<property name="assetPath">
+			<value>SFX/error_007.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.19199546485260771</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{2ad5b946-e578-4304-900a-03f8093aa2df}</destination>
+		</relationship>
+	</object>
+</objects>

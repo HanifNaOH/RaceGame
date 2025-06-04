@@ -89,7 +89,7 @@ public class NFS_Carousel : MonoBehaviour
     public CarouselChangedEvent onSelectionChanged;
 
     // Private variables
-    private int currentIndex = 0;
+    [SerializeField]private int currentIndex = 0;
     private int itemCount = 0;
     private bool isAnimating = false;
     private Coroutine autoCycleCoroutine;
@@ -218,6 +218,13 @@ public class NFS_Carousel : MonoBehaviour
             CanvasGroup canvasGroup = item.GetComponent<CanvasGroup>();
             if (canvasGroup == null)
                 canvasGroup = item.gameObject.AddComponent<CanvasGroup>();
+
+            // Handle interactability
+            Button itemButton = item.GetComponent<Button>();
+            if (itemButton != null)
+            {
+                itemButton.interactable = (relativePosition == 0);
+            }
 
             // Handle initial setup vs animations
             if (instant)
