@@ -64,23 +64,37 @@ namespace UnityChan
 			UpdateParameter ("dragForce", dragForce, dragCurve);
 		}
 	
-		private void UpdateParameter (string fieldName, float baseValue, AnimationCurve curve)
+		private void UpdateParameter(string fieldName, float baseValue, AnimationCurve curve)
 		{
-			#if UNITY_EDITOR
-			var start = curve.keys [0].time;
-			var end = curve.keys [curve.length - 1].time;
-			//var step	= (end - start) / (springBones.Length - 1);
-		
-			var prop = springBones [0].GetType ().GetField (fieldName, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
-		
-			for (int i = 0; i < springBones.Length; i++) {
-				//Kobayashi
-				if (!springBones [i].isUseEachBoneForceSettings) {
-					var scale = curve.Evaluate (start + (end - start) * i / (springBones.Length - 1));
-					prop.SetValue (springBones [i], baseValue * scale);
+		#if UNITY_EDITOR
+			if (springBones == null || springBones.Length == 0)
+			{
+				Debug.LogWarning("SpringManager: springBones array is empty or null.");
+				return;
+			}
+
+			var prop = springBones[0].GetType().GetField(fieldName, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+			if (prop == null)
+			{
+				Debug.LogError($"SpringManager: Field '{fieldName}' not found on SpringBone.");
+				return;
+			}
+
+			var start = curve.keys[0].time;
+			var end = curve.keys[curve.length - 1].time;
+
+			int boneCount = springBones.Length;
+			for (int i = 0; i < boneCount; i++)
+			{
+				if (!springBones[i].isUseEachBoneForceSettings)
+				{
+					float t = (boneCount > 1) ? (float)i / (boneCount - 1) : 0f;
+					float scale = curve.Evaluate(start + (end - start) * t);
+					prop.SetValue(springBones[i], baseValue * scale);
 				}
 			}
-			#endif
+		#endif
 		}
+
 	}
 }
