@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/mc/idle.anim.meta
 guid: 835371f385c77504d8d8bfaec5de0e53
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000
+========
+guid: feed307906e62584ba07af4dce194fda
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 8574412962073106934
+>>>>>>>> Sabian-workspace:Assets/Assets/3d Assets/Texture/NewLayer 2.terrainlayer.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 

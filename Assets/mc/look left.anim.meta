@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/mc/look left.anim.meta
 guid: 9775366830b57c743b2008a104cb723a
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000
+========
+guid: e1e2bd399b6ad13478cb664090432a88
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+>>>>>>>> Sabian-workspace:Assets/Assets/3d Assets/Leaves 2.mat.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 
