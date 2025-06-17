@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/mc/mc spline.controller.meta
+guid: 5f1dd5070d376b345a3d0142e7b73b24
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+========
 guid: 879c73e459ed9f74a8aefd42eb61b6cf
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 8574412962073106934
+>>>>>>>> Sabian-workspace:Assets/Assets/3d Assets/Texture/NewLayer 1.terrainlayer.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 

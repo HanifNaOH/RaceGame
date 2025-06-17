@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/mc/look right.anim.meta
+guid: 4f1e1c78af2241e49b538aef5b230bed
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+========
 guid: d040d15a7a2bfb74d86772a75fa2e971
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
+>>>>>>>> Sabian-workspace:Assets/Assets/3d Assets/leaves.mat.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 
