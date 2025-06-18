@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Cinemachine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CameraManager : MonoBehaviour
 {
@@ -8,18 +9,50 @@ public class CameraManager : MonoBehaviour
     public CinemachineCamera PlayerCarCam;
     public CinemachineCamera POVCam;
     public CinemachineCamera MenuCam;
-
+    public List<CinemachineCamera> TrackCameras;
+    public static CameraManager Instance;
+    private bool DisableChangingCameras = false;
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
     private void Start()
     {
         SwitchToCamera(PlayerCarCam);
     }
-
-    public void SwitchToCamera(CinemachineCamera targetCamera)
+    public void SwitchBackCamera()
     {
+        SwitchToCamera(PlayerCarCam);
+    }
+    public void SwitchToTrackCamera(int index)
+    {
+        if (DisableChangingCameras)
+        {
+            return;
+        }
         FirstCarCam.Priority = 0;
         PlayerCarCam.Priority = 0;
         POVCam.Priority = 0;
-
+        MenuCam.Priority = 0;
+        foreach (CinemachineCamera cam in TrackCameras)
+        {
+            cam.Priority = 0;
+        }
+        TrackCameras[index].Priority = 10;
+    }
+    public void SwitchToCamera(CinemachineCamera targetCamera)
+    {
+        MenuCam.Priority = 0;
+        FirstCarCam.Priority = 0;
+        PlayerCarCam.Priority = 0;
+        POVCam.Priority = 0;
+        foreach (CinemachineCamera cam in TrackCameras)
+        {
+            cam.Priority = 0;
+        }
         targetCamera.Priority = 10;
     }
 
@@ -41,22 +74,29 @@ public class CameraManager : MonoBehaviour
 
     public IEnumerator PanToPlayerCar(float delay = 3f)
     {
-        SwitchToCamera(PlayerCarCam);
-        Debug.Log("Switched to Player Car Camera");
-        yield return new WaitForSeconds(delay);
+        if (!DisableChangingCameras)
+        {
+            SwitchToCamera(PlayerCarCam);
+            Debug.Log("Switched to Player Car Camera");
+            yield return new WaitForSeconds(delay);
+        }
     }
 
     public IEnumerator SwitchToPOV(float delay = 0.5f)
     {
-        yield return new WaitForSeconds(delay);
-        SwitchToCamera(POVCam);
-        Debug.Log("Switched to POV Camera");
+        if (!DisableChangingCameras)
+        {
+            yield return new WaitForSeconds(delay);
+            SwitchToCamera(POVCam);
+            Debug.Log("Switched to POV Camera");
+        }
+
     }
 
     public IEnumerator SwitchToMenuCam(float delay = 3f)
     {
+        DisableChangingCameras = true;
         yield return new WaitForSeconds(delay);
         SwitchToCamera(MenuCam);
-        Debug.Log("Switched to Menu Camera");
     }
 }

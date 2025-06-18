@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 using Unity.VisualScripting;
+using Yarn.Unity.Editor;
 
 public class Car : MonoBehaviour
 {
@@ -17,12 +18,12 @@ public class Car : MonoBehaviour
 
     public int pitBoxIndex;
     public bool pitLap = false;
-    private bool pitting = false;
-
-    private NavMeshAgent navMeshAgent;
+    public bool pitting = false;
+    public NavMeshAgent navMeshAgent;
     private WaypointManager waypointManager;
     private CarProgress carProgress;
     public int currentWaypointIndex = 0;
+    public int totalWaypoints = 0;
     private bool raceStarted = false;
 
     private enum PitState { None, GoingToPit, DrivingToBox, EnterBox, Stopping, ExitBox, ReturningToPitLane, ExitingPit }
@@ -31,6 +32,8 @@ public class Car : MonoBehaviour
     private float _pitStopTimer = 0f;
     private float _pitStopDuration = 3f;
     private int _pitExitWaypointIndex = 2;
+    public int lap = 1;
+    private bool RaceCompleted = false;
 
     void Start()
     {
@@ -54,12 +57,18 @@ public class Car : MonoBehaviour
     void Update()
     {
         if (!raceStarted) return;
-
+        if (lap == RacingManager.Instance.totalLaps && !RaceCompleted)
+        {
+            RaceCompleted = true;
+            DriverStandingManager.Instance.finalStandings.Add(this.name);
+        }
         pitHandler();
 
         if (_pitState == PitState.None && Vector3.Distance(waypointManager.waypoints[currentWaypointIndex].position, transform.position) < waypointThreshold)
         {
+            totalWaypoints++;
             currentWaypointIndex = currentWaypointIndex >= waypointManager.waypoints.Count - 1 ? 0 : (currentWaypointIndex + 1);
+            if (currentWaypointIndex == 0) lap++;
             if (pitLap && currentWaypointIndex == 0)
             {
                 navMeshAgent.SetDestination(waypointManager.pitLaneWaypoint[0].position);
@@ -96,30 +105,31 @@ public class Car : MonoBehaviour
             case PitState.GoingToPit:
                 if (Vector3.Distance(transform.position, waypointManager.pitLaneWaypoint[0].position) < 5f)
                 {
+                    totalWaypoints++;
                     SavedTurnTime = turnSpeed;
                     turnSpeed = 2f;
                     pitting = true;
                     navMeshAgent.velocity = navMeshAgent.desiredVelocity.normalized * 20f;
-                    navMeshAgent.speed = 20f;
+                    navMeshAgent.speed = 10f;
                     navMeshAgent.acceleration = 1000f;
-                    navMeshAgent.SetDestination(waypointManager.GetPitBoxWaypoint(pitBoxIndex,0).position);
+                    navMeshAgent.SetDestination(waypointManager.GetPitBoxWaypoint(pitBoxIndex, 0).position);
                     _pitState = PitState.DrivingToBox;
                 }
                 break;
 
             case PitState.DrivingToBox:
-                if (Vector3.Distance(transform.position, waypointManager.GetPitBoxWaypoint(pitBoxIndex,0).position) < 2f)
+                if (Vector3.Distance(transform.position, waypointManager.GetPitBoxWaypoint(pitBoxIndex, 0).position) < 2f)
                 {
                     _pitState = PitState.EnterBox;
-                    navMeshAgent.SetDestination(waypointManager.GetPitBoxWaypoint(pitBoxIndex,1).position);
+                    navMeshAgent.SetDestination(waypointManager.GetPitBoxWaypoint(pitBoxIndex, 1).position);
                 }
                 break;
             case PitState.EnterBox:
-                if(Vector3.Distance(transform.position, waypointManager.GetPitBoxWaypoint(pitBoxIndex,1).position) < 2f)
+                if (Vector3.Distance(transform.position, waypointManager.GetPitBoxWaypoint(pitBoxIndex, 1).position) < 2f)
                 {
-                    navMeshAgent.SetDestination(waypointManager.GetPitBoxWaypoint(pitBoxIndex,2).position);
+                    navMeshAgent.SetDestination(waypointManager.GetPitBoxWaypoint(pitBoxIndex, 2).position);
                 }
-                if (Vector3.Distance(transform.position, waypointManager.GetPitBoxWaypoint(pitBoxIndex,2).position) < 2f)
+                if (Vector3.Distance(transform.position, waypointManager.GetPitBoxWaypoint(pitBoxIndex, 2).position) < 2f)
                 {
                     navMeshAgent.isStopped = true;
                     _pitStopTimer = 0f;
@@ -131,12 +141,12 @@ public class Car : MonoBehaviour
                 if (_pitStopTimer >= _pitStopDuration)
                 {
                     navMeshAgent.isStopped = false;
-                    navMeshAgent.SetDestination(waypointManager.GetPitBoxWaypoint(pitBoxIndex,3).position);
+                    navMeshAgent.SetDestination(waypointManager.GetPitBoxWaypoint(pitBoxIndex, 3).position);
                     _pitState = PitState.ExitBox;
                 }
                 break;
             case PitState.ExitBox:
-                if (Vector3.Distance(transform.position, waypointManager.GetPitBoxWaypoint(pitBoxIndex,3).position) < 1.5f)
+                if (Vector3.Distance(transform.position, waypointManager.GetPitBoxWaypoint(pitBoxIndex, 3).position) < 1.5f)
                 {
                     navMeshAgent.SetDestination(waypointManager.pitLaneWaypoint[1].position);
                     _pitState = PitState.ReturningToPitLane;

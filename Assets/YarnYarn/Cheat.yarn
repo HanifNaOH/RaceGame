@@ -1,27 +1,46 @@
-﻿title: Cheat
-tags:
+﻿
+title: Overtaking
+position: -16,16
 ---
-Hello Comrade! I see you are having trouble with the game. Would you like some help?
--> Yes
-    Aight
-    <<jump YesCheatingIsFun>>
--> No
-    Alright, have fun!
-    <<GameState MainMenu>>
+    <<declare $randomLine = 0>>
+    <<set $randomLine to random_range(1, 3)>>
+    <<if $randomLine == 1>>
+        Too slow!
+    <<elseif $randomLine == 2>>
+        The positions mine for the taking!
+    <<elseif $randomLine == 3>>
+        Hah! Its too easy!
+    <<endif>>
+===
+title: Overtaken
+position: -16,16
+---
+    <<declare $randomLine1 = 0>>
+    <<set $randomLine1 to random_range(1, 3)>>
+    <<if $randomLine1 == 1>>
+        Tch! Cant this car got faster?!
+
+    <<elseif $randomLine1 == 2>>
+        I will make you pay for that!
+
+    <<elseif $randomLine1 == 3>>
+        You got lucky this time!
+    <<endif>>
+===
+title: Enterpit
+position: -16,16
+---
+    <<declare $randomLine2 = 0>>
+    <<set $randomLine2 to random_range(1, 3)>>
+    <<if $randomLine2 == 1>>
+        Box, Box, Box
+
+    <<elseif $randomLine2 == 2>>
+        Time to change thise tire!
+
+    <<elseif $randomLine2 == 3>>
+        My strategy is better than that one horse.
+
+    <<endif>>
 ===
 
-title: YesCheatingIsFun
-tags:
----
-What would you like help with?
--> Money
-    AEZAKMI AddMoney +100
-    <<AddMoney 100>>
-    <<jump YesCheatingIsFun>>
--> Items
-    /give @s diamond_sword(Steel)
-    <<AddItem "Steel">>
-    <<jump YesCheatingIsFun>>
--> Return
-    <<jump Cheat>>
-===
