@@ -13,6 +13,7 @@ public class RacingManager : MonoBehaviour
     private int lastPosition = 5;
     public TMP_Text positionText;
     public TMP_Text Lap;
+    public bool GameCompleted = false;
     void Awake()
     {
         Instance = this;
@@ -46,19 +47,24 @@ public class RacingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Lap.text = "Lap: " + McCar.lap + "/" + totalLaps;
+        
         positionText.text= "Position: " + currentPosition + "/" + DriverStandingManager.Instance.raceStandings.Count;
         currentSpeed = Mathf.Lerp(0f, 180f, McCar.navMeshAgent.velocity.magnitude / 40f);
         currentPosition = DriverStandingManager.Instance.raceStandings.IndexOf(McCar) + 1;
-        if (DriverStandingManager.Instance.finalStandings.Count >= 5)
+        if (McCar.lap > totalLaps && !GameCompleted)
         {
-            //Game FInished;
+            Debug.Log("Game Completed");
+            GameCompleted = true;
+            StartCoroutine(CameraManager.Instance.SwitchToMenuCam(0f));
+            Lap.text = "Lap: " + totalLaps + "/" + totalLaps;
         }
-        if(lastPosition > currentPosition)
+        else
+            Lap.text = "Lap: " + McCar.lap + "/" + totalLaps;
+        if (lastPosition > currentPosition)
         {
             Overtaking();
         }
-        else if(lastPosition < currentPosition)
+        else if (lastPosition < currentPosition)
         {
             OverTaken();
         }
