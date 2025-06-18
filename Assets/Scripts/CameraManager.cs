@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Cinemachine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CameraManager : MonoBehaviour
 {
@@ -8,18 +9,43 @@ public class CameraManager : MonoBehaviour
     public CinemachineCamera PlayerCarCam;
     public CinemachineCamera POVCam;
     public CinemachineCamera MenuCam;
-
+    public List<CinemachineCamera> TrackCameras;
+    public static CameraManager Instance;
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
     private void Start()
     {
         SwitchToCamera(PlayerCarCam);
     }
-
+    public void SwitchBackCamera()
+    {
+        SwitchToCamera(PlayerCarCam);
+    }
+    public void SwitchToTrackCamera(int index)
+    {
+        FirstCarCam.Priority = 0;
+        PlayerCarCam.Priority = 0;
+        POVCam.Priority = 0;
+        foreach (CinemachineCamera cam in TrackCameras)
+        {
+            cam.Priority = 0;
+        }
+        TrackCameras[index].Priority = 10;
+    }
     public void SwitchToCamera(CinemachineCamera targetCamera)
     {
         FirstCarCam.Priority = 0;
         PlayerCarCam.Priority = 0;
         POVCam.Priority = 0;
-
+        foreach (CinemachineCamera cam in TrackCameras)
+        {
+            cam.Priority = 0;
+        }
         targetCamera.Priority = 10;
     }
 
