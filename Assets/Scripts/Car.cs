@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 using Unity.VisualScripting;
-using Yarn.Unity.Editor;
+// REMOVED: using Yarn.Unity.Editor;
 
 public class Car : MonoBehaviour
 {
@@ -77,7 +77,6 @@ public class Car : MonoBehaviour
             else
                 navMeshAgent.SetDestination(waypointManager.waypoints[currentWaypointIndex].position);
 
-
             if (waypointManager.IsFinishLine(currentWaypointIndex))
             {
                 HandleLapCompletion();
@@ -91,10 +90,12 @@ public class Car : MonoBehaviour
             AdjustSpeedForTurns();
         }
     }
+
     public void goPitThisLap()
     {
         pitLap = true;
     }
+
     float SavedTurnTime;
     public void pitHandler()
     {
