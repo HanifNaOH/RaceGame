@@ -6974,6 +6974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnergyText: {fileID: 1826922705}
   TireText: {fileID: 1025299226}
+  SpeedText: {fileID: 0}
   Car: {fileID: 9107082206522642245}
   highSpeed: 40
   normalSpeed: 30
@@ -6986,6 +6987,9 @@ MonoBehaviour:
   isAi: 0
   isChargingEnergy: 0
   TireWornDown: 0
+  EnergySlider: {fileID: 0}
+  TireSlider: {fileID: 0}
+  Speedometer: {fileID: 0}
 --- !u!4 &1007259941
 Transform:
   m_ObjectHideFlags: 0
@@ -8237,7 +8241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1084112293096630313, guid: 2b8f2e4b38901b147a6df06f9e1df60f, type: 3}
       propertyPath: field of view
-      value: 69.34943
+      value: 60.000004
       objectReference: {fileID: 0}
     - target: {fileID: 1527850259925228198, guid: 2b8f2e4b38901b147a6df06f9e1df60f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8349,31 +8353,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7179566598567161631, guid: 2b8f2e4b38901b147a6df06f9e1df60f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.64
+      value: 145.01994
       objectReference: {fileID: 0}
     - target: {fileID: 7179566598567161631, guid: 2b8f2e4b38901b147a6df06f9e1df60f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.9300003
+      value: 34.71
       objectReference: {fileID: 0}
     - target: {fileID: 7179566598567161631, guid: 2b8f2e4b38901b147a6df06f9e1df60f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.979999
+      value: -201.11993
       objectReference: {fileID: 0}
     - target: {fileID: 7179566598567161631, guid: 2b8f2e4b38901b147a6df06f9e1df60f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.94274116
+      value: 0.6803282
       objectReference: {fileID: 0}
     - target: {fileID: 7179566598567161631, guid: 2b8f2e4b38901b147a6df06f9e1df60f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.17798513
+      value: 0.17970654
       objectReference: {fileID: 0}
     - target: {fileID: 7179566598567161631, guid: 2b8f2e4b38901b147a6df06f9e1df60f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.27715516
+      value: -0.68697226
       objectReference: {fileID: 0}
     - target: {fileID: 7179566598567161631, guid: 2b8f2e4b38901b147a6df06f9e1df60f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.052397195
+      value: 0.18146162
       objectReference: {fileID: 0}
     - target: {fileID: 8229390658620126694, guid: 2b8f2e4b38901b147a6df06f9e1df60f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13860,6 +13864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnergyText: {fileID: 0}
   TireText: {fileID: 0}
+  SpeedText: {fileID: 0}
   Car: {fileID: 1822427687}
   highSpeed: 40
   normalSpeed: 30
@@ -13872,6 +13877,9 @@ MonoBehaviour:
   isAi: 1
   isChargingEnergy: 0
   TireWornDown: 0
+  EnergySlider: {fileID: 0}
+  TireSlider: {fileID: 0}
+  Speedometer: {fileID: 0}
 --- !u!114 &1557627738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13886,6 +13894,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnergyText: {fileID: 0}
   TireText: {fileID: 0}
+  SpeedText: {fileID: 0}
   Car: {fileID: 65639164}
   highSpeed: 40
   normalSpeed: 30
@@ -13898,6 +13907,9 @@ MonoBehaviour:
   isAi: 1
   isChargingEnergy: 0
   TireWornDown: 0
+  EnergySlider: {fileID: 0}
+  TireSlider: {fileID: 0}
+  Speedometer: {fileID: 0}
 --- !u!114 &1557627739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13912,6 +13924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnergyText: {fileID: 0}
   TireText: {fileID: 0}
+  SpeedText: {fileID: 0}
   Car: {fileID: 1143120231}
   highSpeed: 40
   normalSpeed: 30
@@ -13924,6 +13937,9 @@ MonoBehaviour:
   isAi: 1
   isChargingEnergy: 0
   TireWornDown: 0
+  EnergySlider: {fileID: 0}
+  TireSlider: {fileID: 0}
+  Speedometer: {fileID: 0}
 --- !u!114 &1557627740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13938,6 +13954,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnergyText: {fileID: 0}
   TireText: {fileID: 0}
+  SpeedText: {fileID: 0}
   Car: {fileID: 994259917}
   highSpeed: 40
   normalSpeed: 30
@@ -13950,6 +13967,9 @@ MonoBehaviour:
   isAi: 1
   isChargingEnergy: 0
   TireWornDown: 0
+  EnergySlider: {fileID: 0}
+  TireSlider: {fileID: 0}
+  Speedometer: {fileID: 0}
 --- !u!4 &1557627741
 Transform:
   m_ObjectHideFlags: 0
