@@ -3,13 +3,13 @@ using UnityEngine.EventSystems;
 using LitMotion;
 using LitMotion.Extensions;
 using UnityEngine.UI; // Added for Button component reference
-
+using FMODUnity; // Added for FMOD EventReference
 public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
-    // [Header("FMOD Events")]
-    // public EventReference hoverSound;
-    // public EventReference pressSound;
-    // public EventReference releaseSound;
+    [Header("FMOD Events")]
+    public EventReference hoverSound;
+    public EventReference pressSound;
+    public EventReference releaseSound;
 
     [Header("Litmotion Effects")]
     public Transform targetTransform; // The transform to animate
@@ -38,10 +38,10 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         // Press sound (FMOD removed)
-        // if (!pressSound.IsNull)
-        // {
-        //     AudioManager.PlaySFX(pressSound);
-        // }
+        if (!pressSound.IsNull)
+        {
+            AudioManager.PlaySFX(pressSound);
+        }
 
         LitMotion.LMotion.Create(targetTransform.localScale, Vector3.one * 0.9f, 0.1f)
             .BindToLocalScale(targetTransform);
@@ -50,10 +50,10 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerUp(PointerEventData eventData)
     {
         // Release sound (FMOD removed)
-        // if (!releaseSound.IsNull)
-        // {
-        //     AudioManager.PlaySFX(releaseSound);
-        // }
+        if (!releaseSound.IsNull)
+        {
+            AudioManager.PlaySFX(releaseSound);
+        }
 
         if (eventData.pointerCurrentRaycast.gameObject == gameObject)
         {
