@@ -57,6 +57,8 @@ namespace FMODUnity
         {
             yield break;
         }
+#else
+// Commented out editor-specific code to prevent build interference
 #endif
 
         internal override bool IsIntrinsic { get { return true; } }
