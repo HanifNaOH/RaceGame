@@ -1,10 +1,12 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class CarSpeedHandler : MonoBehaviour
 {
     public TMP_Text EnergyText;
     public TMP_Text TireText;
+    public TMP_Text SpeedText; // Text to display the car's current speed
     public Car Car;
     public float highSpeed = 40;
     public float normalSpeed = 30;
@@ -20,6 +22,10 @@ public class CarSpeedHandler : MonoBehaviour
     public bool isChargingEnergy = false;
     public bool TireWornDown = false;
     private bool SavingTire;
+    public Slider EnergySlider; // Slider for energy UI
+    public Slider TireSlider; // Slider for tire UI
+    public Speedometer Speedometer; // Reference to the Speedometer component
+
     void Start()
     {
         ChangeSpeedNormal();
@@ -30,6 +36,17 @@ public class CarSpeedHandler : MonoBehaviour
             EnergyText.text = "Energy: " + Mathf.Round(Energy).ToString();
         if (TireText != null)
             TireText.text = "Tire: " + Mathf.Round(TireCondition).ToString();
+        if (SpeedText != null && Car.navMeshAgent != null)
+        {
+            float currentSpeed = Car.navMeshAgent.velocity.magnitude;
+            SpeedText.text = "Speed: " + Mathf.RoundToInt(currentSpeed).ToString() + " km/h";
+        }
+        if (Speedometer != null && Car.navMeshAgent != null)
+        {
+            float currentSpeed = Car.navMeshAgent.velocity.magnitude;
+            Speedometer.SetTargetVehicle(Car.gameObject); // Bind the car to the speedometer
+            Speedometer.UpdateSpeedometer(); // Update the speedometer with the current speed
+        }
         Ai();
         if (Energy <= 0)
         {
@@ -48,6 +65,16 @@ public class CarSpeedHandler : MonoBehaviour
         {
             TireWornDown = false;
             TireCondition = 100f;
+        }
+        if (EnergySlider != null)
+        {
+            EnergySlider.value = Energy; // Update energy slider directly with 0-100 range
+            // Debug.Log($"Energy Slider Value: {EnergySlider.value}");
+        }
+        if (TireSlider != null)
+        {
+            TireSlider.value = TireCondition; // Update tire slider directly with 0-100 range
+            // Debug.Log($"Tire Slider Value: {TireSlider.value}");
         }
     }
     [ContextMenu("Change Speed High")]

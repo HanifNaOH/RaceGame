@@ -30,6 +30,7 @@ public class Speedometer : MonoBehaviour
     private float currentSpeed;
     private float targetNeedleRotation;
     private float currentNeedleRotation;
+    private Vector3 lastPosition;
 
     private void Start()
     {
@@ -90,25 +91,27 @@ public class Speedometer : MonoBehaviour
         currentSpeed = Mathf.Clamp(currentSpeed, 0f, maxSpeed);
     }
 
-    private void UpdateSpeedometer()
+    public void UpdateSpeedometer()
     {
-        // Update the speed text
-        if (speedText != null)
+        if (targetVehicle != null)
         {
-            speedText.text = Mathf.RoundToInt(currentSpeed).ToString();
-        }
-        
-        // Update the needle rotation
-        if (needleImage != null)
-        {
-            // Calculate the target rotation based on current speed
-            targetNeedleRotation = Mathf.Lerp(minRotation, maxRotation, currentSpeed / maxSpeed);
-            
-            // Smoothly rotate the needle towards the target rotation
-            currentNeedleRotation = Mathf.Lerp(currentNeedleRotation, targetNeedleRotation, Time.deltaTime * needleSmoothing);
-            
-            // Apply the rotation to the needle
-            needleImage.localEulerAngles = new Vector3(0, 0, currentNeedleRotation);
+            currentSpeed = vehicleRigidbody != null
+                ? vehicleRigidbody.linearVelocity.magnitude * speedMultiplier
+                : (targetVehicle.transform.position - lastPosition).magnitude / Time.deltaTime * speedMultiplier;
+
+            currentSpeed = Mathf.Clamp(currentSpeed, 0f, maxSpeed);
+
+            if (speedText != null)
+            {
+                speedText.text = Mathf.RoundToInt(currentSpeed).ToString();
+            }
+
+            if (needleImage != null)
+            {
+                targetNeedleRotation = Mathf.Lerp(minRotation, maxRotation, currentSpeed / maxSpeed);
+                currentNeedleRotation = Mathf.Lerp(currentNeedleRotation, targetNeedleRotation, Time.deltaTime * needleSmoothing);
+                needleImage.localEulerAngles = new Vector3(0, 0, currentNeedleRotation);
+            }
         }
     }
 
