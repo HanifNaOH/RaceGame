@@ -18,7 +18,6 @@ using System.Collections;
 
 namespace FMODUnityResonance
 {
-#if UNITY_EDITOR
     /// A custom editor for properties on the FmodResonanceAudioRoom script. This appears in the
     /// Inspector window of a FmodResonanceAudioRoom object.
     [CustomEditor(typeof(FmodResonanceAudioRoom))]
@@ -120,7 +119,4 @@ namespace FMODUnityResonance
             EditorGUILayout.PropertyField(surfaceMaterial, surfaceMaterialLabel);
         }
     }
-#else
-    // Commented out editor-specific code to prevent build interference
-#endif
 }
