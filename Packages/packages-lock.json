@@ -130,6 +130,16 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.adaptiveperformance": {
+      "version": "5.1.6",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.profiling.core": "1.0.2",
+        "com.unity.modules.subsystems": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.ai.navigation": {
       "version": "2.0.9",
       "depth": 0,
@@ -221,6 +231,16 @@
         "com.unity.formats.fbx": "5.1.4"
       }
     },
+    "com.unity.feature.mobile": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.mobile.android-logcat": "1.4.6",
+        "com.unity.adaptiveperformance": "5.1.6",
+        "com.unity.mobile.notifications": "2.4.2"
+      }
+    },
     "com.unity.film-internal-utilities": {
       "version": "0.19.2-preview",
       "depth": 1,
@@ -266,6 +286,22 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.mobile.android-logcat": {
+      "version": "1.4.6",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.mobile.notifications": {
+      "version": "2.4.2",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.androidjni": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.multiplayer.center": {
       "version": "1.0.0",
       "depth": 0,
@@ -282,8 +318,15 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.performance.profile-analyzer": {
-      "version": "1.2.3",
+      "version": "1.2.4",
       "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.profiling.core": {
+      "version": "1.0.2",
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -432,6 +475,15 @@
       "source": "git",
       "dependencies": {},
       "hash": "608d08904508f20b106b27ae2f7c12e2cde45191"
+    },
+    "dev.yarnspinner.unity.samples": {
+      "version": "file:dev.yarnspinner.unity.samples",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "dev.yarnspinner.unity": "3.0.3",
+        "com.unity.shadergraph": "14.0.0"
+      }
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",

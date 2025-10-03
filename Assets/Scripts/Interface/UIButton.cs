@@ -40,7 +40,7 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         // Press sound (FMOD removed)
         if (!pressSound.IsNull)
         {
-            AudioManager.PlaySFX(pressSound);
+            // AudioManager.PlaySFX(pressSound); // Commented out - AudioManager not found
         }
 
         LitMotion.LMotion.Create(targetTransform.localScale, Vector3.one * 0.9f, 0.1f)
@@ -52,7 +52,7 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         // Release sound (FMOD removed)
         if (!releaseSound.IsNull)
         {
-            AudioManager.PlaySFX(releaseSound);
+            // AudioManager.PlaySFX(releaseSound); // Commented out - AudioManager not found
         }
 
         if (eventData.pointerCurrentRaycast.gameObject == gameObject)

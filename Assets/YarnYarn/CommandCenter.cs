@@ -5,10 +5,13 @@ using System.Collections.Generic;
 using System;
 using Yarn.Unity;
 using LitMotion;
+using System.Threading;
 
-public class CommandCenter : DialogueViewBase
+#nullable enable
+
+public class CommandCenter : DialoguePresenterBase
 {
-    DialogueRunner runner;
+    DialogueRunner? runner;
 
     void Awake()
     {
@@ -78,4 +81,28 @@ public class CommandCenter : DialogueViewBase
         }
     }
 
+    // Required abstract method implementations for DialoguePresenterBase
+    public override YarnTask RunLineAsync(LocalizedLine line, LineCancellationToken token)
+    {
+        // This CommandCenter doesn't handle line presentation, so return completed task
+        return YarnTask.CompletedTask;
+    }
+
+    public override YarnTask<DialogueOption?> RunOptionsAsync(DialogueOption[] dialogueOptions, CancellationToken cancellationToken)
+    {
+        // This CommandCenter doesn't handle options presentation, so return no selection
+        return YarnTask.FromResult<DialogueOption?>(null);
+    }
+
+    public override YarnTask OnDialogueStartedAsync()
+    {
+        // No special setup needed for commands
+        return YarnTask.CompletedTask;
+    }
+
+    public override YarnTask OnDialogueCompleteAsync()
+    {
+        // No special cleanup needed for commands
+        return YarnTask.CompletedTask;
+    }
 }
