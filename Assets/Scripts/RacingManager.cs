@@ -56,6 +56,7 @@ public class RacingManager : MonoBehaviour
             Debug.Log("Game Completed");
             GameCompleted = true;
             StartCoroutine(CameraManager.Instance.SwitchToMenuCam(0f));
+            Time.timeScale = 0;
             Lap.text = "Lap: " + totalLaps + "/" + totalLaps;
         }
         else
