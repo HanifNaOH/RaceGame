@@ -48,7 +48,7 @@ public class RacingManager : MonoBehaviour
     void Update()
     {
         
-        positionText.text= "Position: " + currentPosition + "/" + DriverStandingManager.Instance.raceStandings.Count;
+        positionText.text= currentPosition + "/" + DriverStandingManager.Instance.raceStandings.Count;
         currentSpeed = Mathf.Lerp(0f, 180f, McCar.navMeshAgent.velocity.magnitude / 40f);
         currentPosition = DriverStandingManager.Instance.raceStandings.IndexOf(McCar) + 1;
         if (McCar.lap > totalLaps && !GameCompleted)
@@ -57,10 +57,9 @@ public class RacingManager : MonoBehaviour
             GameCompleted = true;
             StartCoroutine(CameraManager.Instance.SwitchToMenuCam(0f));
             Time.timeScale = 0;
-            Lap.text = "Lap: " + totalLaps + "/" + totalLaps;
         }
         else
-            Lap.text = "Lap: " + McCar.lap + "/" + totalLaps;
+            Lap.text = McCar.lap + "/" + totalLaps;
         if (lastPosition > currentPosition)
         {
             Overtaking();

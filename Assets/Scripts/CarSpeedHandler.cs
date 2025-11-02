@@ -22,9 +22,9 @@ public class CarSpeedHandler : MonoBehaviour
     public bool isChargingEnergy = false;
     public bool TireWornDown = false;
     private bool SavingTire;
-    public Slider EnergySlider; // Slider for energy UI
-    public Slider TireSlider; // Slider for tire UI
-    public Speedometer Speedometer; // Reference to the Speedometer component
+    public EnergyUI EnergySlider; // Slider for energy UI
+    public TyreWearUI TireSlider; // Slider for tire UI
+    public NewSpeedometer speedometer;
 
     void Start()
     {
@@ -40,12 +40,6 @@ public class CarSpeedHandler : MonoBehaviour
         {
             float currentSpeed = Car.navMeshAgent.velocity.magnitude;
             SpeedText.text = "Speed: " + Mathf.RoundToInt(currentSpeed).ToString() + " km/h";
-        }
-        if (Speedometer != null && Car.navMeshAgent != null)
-        {
-            float currentSpeed = Car.navMeshAgent.velocity.magnitude;
-            Speedometer.SetTargetVehicle(Car.gameObject); // Bind the car to the speedometer
-            Speedometer.UpdateSpeedometer(); // Update the speedometer with the current speed
         }
         Ai();
         if (Energy <= 0)
@@ -68,13 +62,11 @@ public class CarSpeedHandler : MonoBehaviour
         }
         if (EnergySlider != null)
         {
-            EnergySlider.value = Energy; // Update energy slider directly with 0-100 range
-            // Debug.Log($"Energy Slider Value: {EnergySlider.value}");
+            EnergySlider.UpdateEnergyUI(Energy); // Update energy slider directly with 0-100 range
         }
         if (TireSlider != null)
         {
-            TireSlider.value = TireCondition; // Update tire slider directly with 0-100 range
-            // Debug.Log($"Tire Slider Value: {TireSlider.value}");
+            TireSlider.UpdateTyreUI(TireCondition);
         }
     }
     [ContextMenu("Change Speed High")]
@@ -82,6 +74,8 @@ public class CarSpeedHandler : MonoBehaviour
     {
         if (TireWornDown)
             return;
+        if(speedometer != null)
+            speedometer.HighSpeedUI();
         Car.maxSpeed = highSpeed;
         _energyRate = -1 * energyRate;
         _tireRate = -2 * tirerate;
@@ -91,6 +85,8 @@ public class CarSpeedHandler : MonoBehaviour
     {
         if (TireWornDown)
             return;
+        if(speedometer != null)
+            speedometer.MedSpeedUI();
         Car.maxSpeed = normalSpeed;
         _energyRate = 1;
         _tireRate = -1 * tirerate;
@@ -100,12 +96,16 @@ public class CarSpeedHandler : MonoBehaviour
     {
         if (TireWornDown)
             return;
+        if(speedometer != null)
+            speedometer.LowSpeedUI();
         Car.maxSpeed = lowSpeed;
         _energyRate = 1 * energyRate;
         _tireRate = -0.3f * tirerate;
     }
     public void CarBrokeDown()
     {
+        if(speedometer != null)
+            speedometer.BrokeSpeedUI();
         Car.maxSpeed = breakSpeed;
         _energyRate = 1 * 0f;
     }

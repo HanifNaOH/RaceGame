@@ -3,10 +3,16 @@ using UnityEngine.UI;
 
 public class TyreWearUI : MonoBehaviour
 {
-    [SerializeField] private Slider tyreWearSlider; // Slider to represent tyre wear
+    [SerializeField] private Image tyreSlider; // Slider to represent energy level
+    private float fillSpeed = 5f;
+    private float targetFill = 1f;
 
-    public void UpdateTyreWearUI(float wearLevel)
+    public void UpdateTyreUI(float tyre)
     {
-        tyreWearSlider.value = Mathf.Clamp01(wearLevel); // Update slider value (0 to 1)
+        tyreSlider.fillAmount = Mathf.Clamp01(tyre / 100f); // Update slider value (0 to 1)
+    }
+    private void Update()
+    {
+        tyreSlider.fillAmount = Mathf.Lerp(tyreSlider.fillAmount, targetFill, Time.deltaTime * fillSpeed);
     }
 }
