@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: ebf7eb2a9bcf91b4e930c3808965a64b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -3849208002338648632, guid: ebf7eb2a9bcf91b4e930c3808965a64b, type: 3}
+      objectReference: {fileID: 2100000, guid: 8503b0d1375a81c41a18fb03370d493d, type: 2}
     - target: {fileID: 919132149155446097, guid: ebf7eb2a9bcf91b4e930c3808965a64b, type: 3}
       propertyPath: m_Name
       value: Fence
