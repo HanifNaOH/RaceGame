@@ -27,4 +27,17 @@ public class DriverStandingManager : MonoBehaviour
                 return Vector3.Distance(waypointManager.waypoints[currentWaypointIndex].position, car.transform.position);
             }).ToList();
     }
+    public void FinalSort()
+    {
+        raceStandings = cars
+            .OrderByDescending(car => car.lap)
+            .ThenByDescending(car => car.totalWaypoints)
+            .ThenBy(car =>
+            {
+                int currentWaypointIndex = car.totalWaypoints % waypointManager.waypoints.Count;
+                return Vector3.Distance(waypointManager.waypoints[currentWaypointIndex].position,
+                                        car.transform.position);
+            })
+            .ToList();
+    }
 }

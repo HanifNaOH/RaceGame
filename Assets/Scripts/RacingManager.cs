@@ -14,6 +14,8 @@ public class RacingManager : MonoBehaviour
     public TMP_Text positionText;
     public TMP_Text Lap;
     public bool GameCompleted = false;
+    public GameObject losePanel;
+    private GameOverUI gameOverUI;
     void Awake()
     {
         Instance = this;
@@ -21,6 +23,7 @@ public class RacingManager : MonoBehaviour
     void Start()
     {
         currentPosition = DriverStandingManager.Instance.raceStandings.IndexOf(McCar) + 1;
+        gameOverUI = losePanel.GetComponent<GameOverUI>();
     }
     void Overtaking()
     {
@@ -53,7 +56,9 @@ public class RacingManager : MonoBehaviour
         currentPosition = DriverStandingManager.Instance.raceStandings.IndexOf(McCar) + 1;
         if (McCar.lap > totalLaps && !GameCompleted)
         {
-            Debug.Log("Game Completed");
+            if(losePanel != null)
+                losePanel.SetActive(true);
+            gameOverUI.ShowResults();
             GameCompleted = true;
             StartCoroutine(CameraManager.Instance.SwitchToMenuCam(0f));
             Time.timeScale = 0;
