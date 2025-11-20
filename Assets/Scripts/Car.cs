@@ -34,6 +34,7 @@ public class Car : MonoBehaviour
     private int _pitExitWaypointIndex = 2;
     public int lap = 1;
     private bool RaceCompleted = false;
+    public Sprite driverSprite;
 
     void Start()
     {

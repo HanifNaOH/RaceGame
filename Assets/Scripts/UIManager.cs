@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour
         currentCanvas = mainMenuCanvas;
 
         // Update UI elements
-        UpdateMoneyUI(GameManager.Instance.PlayerMoney);
+        // UpdateMoneyUI(GameManager.Instance.PlayerMoney);
         UpdateRaceUI(GameManager.Instance.CompletedRaces);
         UpdateGameStateUI(GameManager.Instance.CurrentState);
         
