@@ -140,29 +140,31 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a57d9ed86bd189d4583ff45f850c050d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButton
   hoverSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -327506696
+      Data2: 1273000096
+      Data3: 1937839281
+      Data4: -643395247
+    Path: event:/Button_Hover
   pressSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1051703500
+      Data2: 1107089154
+      Data3: 1004271244
+      Data4: 1006802319
+    Path: event:/Button_Press
   releaseSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -296931498
+      Data2: 1112088822
+      Data3: 607008132
+      Data4: 778378989
+    Path: event:/Button_Release
   targetTransform: {fileID: 1695788}
+  hoverScale: 1.1
+  pressedScale: 0.9
 --- !u!1001 &5076515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -452,6 +454,7 @@ GameObject:
   - component: {fileID: 65639165}
   - component: {fileID: 65639164}
   - component: {fileID: 65639163}
+  - component: {fileID: 65639168}
   m_Layer: 0
   m_Name: Lewashed hamilton
   m_TagString: Car
@@ -504,6 +507,13 @@ MonoBehaviour:
   totalWaypoints: 0
   lap: 1
   driverSprite: {fileID: 21300000, guid: 20e247a51f33f3e448518c48e5453d6f, type: 3}
+  engineLoopEvent:
+    Guid:
+      Data1: 395325416
+      Data2: 1150359864
+      Data3: -2020128843
+      Data4: 912280944
+    Path: event:/Engine
 --- !u!195 &65639165
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -552,6 +562,37 @@ Transform:
   - {fileID: 1869894017}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &65639168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65639162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 395325416
+      Data2: 1150359864
+      Data3: -2020128843
+      Data4: 912280944
+    Path: event:/Engine
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 2
+  OverrideMaxDistance: 20
 --- !u!4 &65673663 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 75a94023e307a4741b24713ea162ac2c, type: 3}
@@ -759,7 +800,7 @@ Transform:
   m_GameObject: {fileID: 114657339}
   serializedVersion: 2
   m_LocalRotation: {x: 0.50000006, y: 0.49999994, z: 0.50000006, w: -0.49999994}
-  m_LocalPosition: {x: 0.04, y: -0.74, z: -1.09}
+  m_LocalPosition: {x: 0.04, y: -0.62, z: -1.09}
   m_LocalScale: {x: 78.74522, y: 172.82198, z: 172.822}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3694,6 +3735,7 @@ GameObject:
   - component: {fileID: 472810572}
   - component: {fileID: 472810571}
   - component: {fileID: 472810570}
+  - component: {fileID: 472810573}
   m_Layer: 5
   m_Name: med
   m_TagString: Untagged
@@ -3814,6 +3856,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 472810568}
   m_CullTransparentMesh: 1
+--- !u!114 &472810573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472810568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a57d9ed86bd189d4583ff45f850c050d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButton
+  hoverSound:
+    Guid:
+      Data1: -327506696
+      Data2: 1273000096
+      Data3: 1937839281
+      Data4: -643395247
+    Path: event:/Button_Hover
+  pressSound:
+    Guid:
+      Data1: 1051703500
+      Data2: 1107089154
+      Data3: 1004271244
+      Data4: 1006802319
+    Path: event:/Button_Press
+  releaseSound:
+    Guid:
+      Data1: -296931498
+      Data2: 1112088822
+      Data3: 607008132
+      Data4: 778378989
+    Path: event:/Button_Release
+  targetTransform: {fileID: 472810569}
+  hoverScale: 1.1
+  pressedScale: 0.9
 --- !u!1 &490030392
 GameObject:
   m_ObjectHideFlags: 0
@@ -3826,6 +3904,7 @@ GameObject:
   - component: {fileID: 490030396}
   - component: {fileID: 490030395}
   - component: {fileID: 490030394}
+  - component: {fileID: 490030397}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -3946,6 +4025,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 490030392}
   m_CullTransparentMesh: 1
+--- !u!114 &490030397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490030392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a57d9ed86bd189d4583ff45f850c050d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButton
+  hoverSound:
+    Guid:
+      Data1: -327506696
+      Data2: 1273000096
+      Data3: 1937839281
+      Data4: -643395247
+    Path: event:/Button_Hover
+  pressSound:
+    Guid:
+      Data1: 1051703500
+      Data2: 1107089154
+      Data3: 1004271244
+      Data4: 1006802319
+    Path: event:/Button_Press
+  releaseSound:
+    Guid:
+      Data1: -296931498
+      Data2: 1112088822
+      Data3: 607008132
+      Data4: 778378989
+    Path: event:/Button_Release
+  targetTransform: {fileID: 490030393}
+  hoverScale: 1.1
+  pressedScale: 0.9
 --- !u!1001 &496984315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4961,6 +5076,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkpointIndex: 0
   isFinishLine: 0
+--- !u!1 &651550688
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 651550689}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &651550689
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651550688}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 138.33832, y: 7.24, z: -186.92238}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &689227472
 GameObject:
   m_ObjectHideFlags: 0
@@ -5353,6 +5499,7 @@ GameObject:
   - component: {fileID: 742597390}
   - component: {fileID: 742597389}
   - component: {fileID: 742597388}
+  - component: {fileID: 742597391}
   m_Layer: 5
   m_Name: high
   m_TagString: Untagged
@@ -5473,6 +5620,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742597386}
   m_CullTransparentMesh: 1
+--- !u!114 &742597391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742597386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a57d9ed86bd189d4583ff45f850c050d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButton
+  hoverSound:
+    Guid:
+      Data1: -327506696
+      Data2: 1273000096
+      Data3: 1937839281
+      Data4: -643395247
+    Path: event:/Button_Hover
+  pressSound:
+    Guid:
+      Data1: 1051703500
+      Data2: 1107089154
+      Data3: 1004271244
+      Data4: 1006802319
+    Path: event:/Button_Press
+  releaseSound:
+    Guid:
+      Data1: -296931498
+      Data2: 1112088822
+      Data3: 607008132
+      Data4: 778378989
+    Path: event:/Button_Release
+  targetTransform: {fileID: 742597387}
+  hoverScale: 1.1
+  pressedScale: 0.9
 --- !u!4 &747960216 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a36a31a7bcbb36d42b83f667ab674d70, type: 3}
@@ -7439,6 +7622,7 @@ GameObject:
   - component: {fileID: 994259918}
   - component: {fileID: 994259917}
   - component: {fileID: 994259916}
+  - component: {fileID: 994259921}
   m_Layer: 0
   m_Name: Charles Lecrash
   m_TagString: Car
@@ -7491,6 +7675,13 @@ MonoBehaviour:
   totalWaypoints: 0
   lap: 1
   driverSprite: {fileID: 21300000, guid: 47e5319c2560fdd45bcf432bae177229, type: 3}
+  engineLoopEvent:
+    Guid:
+      Data1: 395325416
+      Data2: 1150359864
+      Data3: -2020128843
+      Data4: 912280944
+    Path: event:/Engine
 --- !u!195 &994259918
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7539,6 +7730,37 @@ Transform:
   - {fileID: 1790678096}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &994259921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994259915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 395325416
+      Data2: 1150359864
+      Data3: -2020128843
+      Data4: 912280944
+    Path: event:/Engine
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 2
+  OverrideMaxDistance: 20
 --- !u!4 &996076678 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a36a31a7bcbb36d42b83f667ab674d70, type: 3}
@@ -8508,6 +8730,7 @@ GameObject:
   - component: {fileID: 1143120232}
   - component: {fileID: 1143120231}
   - component: {fileID: 1143120230}
+  - component: {fileID: 1143120235}
   m_Layer: 0
   m_Name: Franzz Herman
   m_TagString: Car
@@ -8560,6 +8783,13 @@ MonoBehaviour:
   totalWaypoints: 0
   lap: 1
   driverSprite: {fileID: 21300000, guid: 00c32f8b7485b2c489ebab0f5a11f7c1, type: 3}
+  engineLoopEvent:
+    Guid:
+      Data1: 395325416
+      Data2: 1150359864
+      Data3: -2020128843
+      Data4: 912280944
+    Path: event:/Engine
 --- !u!195 &1143120232
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -8607,6 +8837,37 @@ Transform:
   - {fileID: 194217306}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1143120235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143120229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 395325416
+      Data2: 1150359864
+      Data3: -2020128843
+      Data4: 912280944
+    Path: event:/Engine
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 2
+  OverrideMaxDistance: 20
 --- !u!1 &1172201199
 GameObject:
   m_ObjectHideFlags: 0
@@ -9075,7 +9336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1084112293096630313, guid: 2b8f2e4b38901b147a6df06f9e1df60f, type: 3}
       propertyPath: field of view
-      value: 60.000004
+      value: 69.34943
       objectReference: {fileID: 0}
     - target: {fileID: 1527850259925228198, guid: 2b8f2e4b38901b147a6df06f9e1df60f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9187,31 +9448,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7179566598567161631, guid: 2b8f2e4b38901b147a6df06f9e1df60f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.800003
+      value: 4.9600034
       objectReference: {fileID: 0}
     - target: {fileID: 7179566598567161631, guid: 2b8f2e4b38901b147a6df06f9e1df60f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 25.799997
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7179566598567161631, guid: 2b8f2e4b38901b147a6df06f9e1df60f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 47.09999
+      value: 14.909988
       objectReference: {fileID: 0}
     - target: {fileID: 7179566598567161631, guid: 2b8f2e4b38901b147a6df06f9e1df60f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.9088776
+      value: 0.94274116
       objectReference: {fileID: 0}
     - target: {fileID: 7179566598567161631, guid: 2b8f2e4b38901b147a6df06f9e1df60f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.4131177
+      value: 0.17798513
       objectReference: {fileID: 0}
     - target: {fileID: 7179566598567161631, guid: 2b8f2e4b38901b147a6df06f9e1df60f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.05212054
+      value: 0.27715516
       objectReference: {fileID: 0}
     - target: {fileID: 7179566598567161631, guid: 2b8f2e4b38901b147a6df06f9e1df60f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.023638882
+      value: -0.052397195
       objectReference: {fileID: 0}
     - target: {fileID: 8229390658620126694, guid: 2b8f2e4b38901b147a6df06f9e1df60f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9918,6 +10179,7 @@ GameObject:
   - component: {fileID: 1335643547}
   - component: {fileID: 1335643546}
   - component: {fileID: 1335643545}
+  - component: {fileID: 1335643548}
   m_Layer: 5
   m_Name: low
   m_TagString: Untagged
@@ -10038,6 +10300,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335643543}
   m_CullTransparentMesh: 1
+--- !u!114 &1335643548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335643543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a57d9ed86bd189d4583ff45f850c050d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButton
+  hoverSound:
+    Guid:
+      Data1: -327506696
+      Data2: 1273000096
+      Data3: 1937839281
+      Data4: -643395247
+    Path: event:/Button_Hover
+  pressSound:
+    Guid:
+      Data1: 1051703500
+      Data2: 1107089154
+      Data3: 1004271244
+      Data4: 1006802319
+    Path: event:/Button_Press
+  releaseSound:
+    Guid:
+      Data1: -296931498
+      Data2: 1112088822
+      Data3: 607008132
+      Data4: 778378989
+    Path: event:/Button_Release
+  targetTransform: {fileID: 1335643544}
+  hoverScale: 1.1
+  pressedScale: 0.9
 --- !u!1 &1349519528
 GameObject:
   m_ObjectHideFlags: 0
@@ -15009,6 +15307,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -227
       objectReference: {fileID: 0}
+    - target: {fileID: 819576152343996420, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228681560064400040, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228681560064400040, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228681560064400040, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228681560064400040, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1446198866038673830, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -15237,6 +15555,14 @@ PrefabInstance:
       propertyPath: m_WholeNumbers
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6551013361082414303, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551013361082414303, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6593396852454271826, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
       propertyPath: m_SizeDelta.x
       value: 77.964
@@ -15299,6 +15625,22 @@ PrefabInstance:
       objectReference: {fileID: 770265360}
     - target: {fileID: 7469831508862537829, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520844912308034298, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520844912308034298, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520844912308034298, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520844912308034298, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7677529983781689895, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
@@ -15477,12 +15819,44 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8622370491283343212, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8622370491283343212, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8622370491283343212, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8622370491283343212, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8788260005847040158, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8788260005847040158, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791571145268443410, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791571145268443410, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791571145268443410, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791571145268443410, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8816621515568973728, guid: 115c7cddf891573459cf9e32c0e90f1d, type: 3}
@@ -15683,7 +16057,7 @@ Transform:
   m_GameObject: {fileID: 1527525759}
   serializedVersion: 2
   m_LocalRotation: {x: 0.50000006, y: 0.49999997, z: 0.50000006, w: -0.49999997}
-  m_LocalPosition: {x: 0.03999305, y: -0.7358184, z: -0.8930637}
+  m_LocalPosition: {x: 0.03999305, y: -0.58, z: -0.8930637}
   m_LocalScale: {x: 78.74516, y: 172.82196, z: 172.82198}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17380,6 +17754,7 @@ GameObject:
   - component: {fileID: 1767422132}
   - component: {fileID: 1767422131}
   - component: {fileID: 1767422130}
+  - component: {fileID: 1767422133}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -17500,6 +17875,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1767422128}
   m_CullTransparentMesh: 1
+--- !u!114 &1767422133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767422128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a57d9ed86bd189d4583ff45f850c050d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButton
+  hoverSound:
+    Guid:
+      Data1: -327506696
+      Data2: 1273000096
+      Data3: 1937839281
+      Data4: -643395247
+    Path: event:/Button_Hover
+  pressSound:
+    Guid:
+      Data1: 1051703500
+      Data2: 1107089154
+      Data3: 1004271244
+      Data4: 1006802319
+    Path: event:/Button_Press
+  releaseSound:
+    Guid:
+      Data1: -296931498
+      Data2: 1112088822
+      Data3: 607008132
+      Data4: 778378989
+    Path: event:/Button_Release
+  targetTransform: {fileID: 1767422129}
+  hoverScale: 1.1
+  pressedScale: 0.9
 --- !u!4 &1769410718 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6737063480790932056, guid: 3fcab6a2e44c5fc4ca755162941bc844, type: 3}
@@ -17918,6 +18329,7 @@ GameObject:
   - component: {fileID: 1822427688}
   - component: {fileID: 1822427687}
   - component: {fileID: 1822427686}
+  - component: {fileID: 1822427691}
   m_Layer: 0
   m_Name: Lando Nowins
   m_TagString: Car
@@ -17970,6 +18382,13 @@ MonoBehaviour:
   totalWaypoints: 0
   lap: 1
   driverSprite: {fileID: 21300000, guid: a2676fc3f65394e40a692419453d1d27, type: 3}
+  engineLoopEvent:
+    Guid:
+      Data1: 395325416
+      Data2: 1150359864
+      Data3: -2020128843
+      Data4: 912280944
+    Path: event:/Engine
 --- !u!195 &1822427688
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -18017,6 +18436,37 @@ Transform:
   - {fileID: 526282041}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1822427691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822427685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 395325416
+      Data2: 1150359864
+      Data3: -2020128843
+      Data4: 912280944
+    Path: event:/Engine
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 2
+  OverrideMaxDistance: 20
 --- !u!1 &1826922702
 GameObject:
   m_ObjectHideFlags: 0
@@ -20017,7 +20467,7 @@ Transform:
   m_GameObject: {fileID: 2027594006}
   serializedVersion: 2
   m_LocalRotation: {x: 0.50000006, y: 0.49999997, z: 0.50000006, w: -0.49999997}
-  m_LocalPosition: {x: 0.02, y: -0.7367959, z: -1.08}
+  m_LocalPosition: {x: 0.02, y: -0.57, z: -1.08}
   m_LocalScale: {x: 78.74516, y: 172.82196, z: 172.82198}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22311,6 +22761,13 @@ MonoBehaviour:
   Lap: {fileID: 424521932}
   GameCompleted: 0
   losePanel: {fileID: 1268137125}
+  loopMusicEvent:
+    Guid:
+      Data1: 939068786
+      Data2: 1079482519
+      Data3: -165143925
+      Data4: 253462463
+    Path: event:/Music
 --- !u!4 &2093184732
 Transform:
   m_ObjectHideFlags: 0
@@ -24159,6 +24616,7 @@ GameObject:
   - component: {fileID: 9107082206522642245}
   - component: {fileID: 4905261916466420782}
   - component: {fileID: 9107082206522642246}
+  - component: {fileID: 9107082206522642247}
   m_Layer: 0
   m_Name: Lily Verstappen
   m_TagString: Player
@@ -24530,6 +24988,13 @@ MonoBehaviour:
   totalWaypoints: 0
   lap: 1
   driverSprite: {fileID: 21300000, guid: 30bd13a758c17f543bd492cd61175251, type: 3}
+  engineLoopEvent:
+    Guid:
+      Data1: 395325416
+      Data2: 1150359864
+      Data3: -2020128843
+      Data4: 912280944
+    Path: event:/Engine
 --- !u!65 &9107082206522642246
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24551,6 +25016,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9107082206522642247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4072811728059615131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 395325416
+      Data2: 1150359864
+      Data3: -2020128843
+      Data4: 912280944
+    Path: event:/Engine
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 2
+  OverrideMaxDistance: 20
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -24590,3 +25086,4 @@ SceneRoots:
   - {fileID: 1494903429}
   - {fileID: 625130318}
   - {fileID: 1224638049}
+  - {fileID: 651550689}

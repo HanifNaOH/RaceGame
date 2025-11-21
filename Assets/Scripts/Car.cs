@@ -3,6 +3,8 @@ using UnityEngine.AI;
 using System.Collections;
 using Unity.VisualScripting;
 // REMOVED: using Yarn.Unity.Editor;
+using FMODUnity;
+using FMOD.Studio;
 
 public class Car : MonoBehaviour
 {
@@ -35,6 +37,11 @@ public class Car : MonoBehaviour
     public int lap = 1;
     private bool RaceCompleted = false;
     public Sprite driverSprite;
+    [Header("FMOD Engine")]
+    public EventReference engineLoopEvent;
+
+    private EventInstance engineLoopInstance;
+    private StudioEventEmitter studioEmitter;
 
     void Start()
     {
@@ -53,6 +60,25 @@ public class Car : MonoBehaviour
         }
 
         StartRace();
+
+        studioEmitter = GetComponent<StudioEventEmitter>();
+
+        if (studioEmitter != null)
+        {
+            if (!engineLoopEvent.IsNull)
+            {
+                studioEmitter.EventReference = engineLoopEvent;
+            }
+
+            studioEmitter.Play();
+        }
+        else if (!engineLoopEvent.IsNull)
+        {
+            engineLoopInstance = RuntimeManager.CreateInstance(engineLoopEvent);
+            RuntimeManager.AttachInstanceToGameObject(engineLoopInstance, gameObject);
+            engineLoopInstance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
+            engineLoopInstance.start();
+        }
     }
 
     void Update()
@@ -237,5 +263,20 @@ public class Car : MonoBehaviour
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, waypointThreshold);
+    }
+
+    void OnDestroy()
+    {
+        if (studioEmitter != null)
+        {
+            studioEmitter.Stop();
+            return;
+        }
+
+        if (engineLoopInstance.isValid())
+        {
+            engineLoopInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            engineLoopInstance.release();
+        }
     }
 }

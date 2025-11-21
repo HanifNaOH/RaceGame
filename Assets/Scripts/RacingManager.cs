@@ -2,6 +2,9 @@ using UnityEngine;
 using Yarn.Unity;
 using TMPro;
 using UnityEngine.UIElements;
+using FMODUnity;
+
+using FMOD.Studio;
 public class RacingManager : MonoBehaviour
 {
     public int totalLaps;
@@ -16,6 +19,11 @@ public class RacingManager : MonoBehaviour
     public bool GameCompleted = false;
     public GameObject losePanel;
     private GameOverUI gameOverUI;
+
+    [Header("FMOD Music")]
+    public EventReference loopMusicEvent;
+
+    private EventInstance loopMusicInstance;
     void Awake()
     {
         Instance = this;
@@ -24,6 +32,12 @@ public class RacingManager : MonoBehaviour
     {
         currentPosition = DriverStandingManager.Instance.raceStandings.IndexOf(McCar) + 1;
         gameOverUI = losePanel.GetComponent<GameOverUI>();
+
+        if (!loopMusicEvent.IsNull)
+        {
+            loopMusicInstance = RuntimeManager.CreateInstance(loopMusicEvent);
+            loopMusicInstance.start();
+        }
     }
     void Overtaking()
     {
@@ -74,5 +88,14 @@ public class RacingManager : MonoBehaviour
             OverTaken();
         }
         lastPosition = currentPosition;
+    }
+
+    void OnDestroy()
+    {
+        if (loopMusicInstance.isValid())
+        {
+            loopMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            loopMusicInstance.release();
+        }
     }
 }
