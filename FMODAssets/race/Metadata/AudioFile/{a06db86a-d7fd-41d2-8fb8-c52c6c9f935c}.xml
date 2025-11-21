@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
-	<object class="AudioFile" id="{bf3cda40-199a-42a0-82f8-f0a8c7399ec7}">
+	<object class="AudioFile" id="{a06db86a-d7fd-41d2-8fb8-c52c6c9f935c}">
 		<property name="assetPath">
-			<value>SFX/Car.wav</value>
-		</property>
-		<property name="isStreaming">
-			<value>true</value>
+			<value>SFX/release.ogg</value>
 		</property>
 		<property name="frequencyInKHz">
-			<value>96</value>
+			<value>44.0999985</value>
 		</property>
 		<property name="channelCount">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<property name="length">
-			<value>33.688916666666664</value>
+			<value>0.32201814058956918</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{0f73233a-4c02-453e-bbff-bf82851940cd}</destination>
