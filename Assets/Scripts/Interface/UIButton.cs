@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using LitMotion;
-using LitMotion.Extensions;
 using UnityEngine.UI; // Added for Button component reference
 using FMODUnity; // Added for FMOD EventReference
 public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
@@ -11,59 +9,68 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public EventReference pressSound;
     public EventReference releaseSound;
 
-    [Header("Litmotion Effects")]
-    public Transform targetTransform; // The transform to animate
+    [Header("UIButton Settings")]
+    public Transform targetTransform;
+    [Range(1f, 1.5f)]
+    public float hoverScale = 1.1f;
+    [Range(0.5f, 1f)]
+    public float pressedScale = 0.9f;
+
+    private Vector3 originalScale;
+    private Button button;
 
     private void Awake()
     {
         if (targetTransform == null)
             targetTransform = transform;
+
+        originalScale = targetTransform.localScale;
+        button = GetComponent<Button>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!GetComponent<Button>().interactable)
+        if (button != null && !button.interactable)
             return;
 
-        LitMotion.LMotion.Create(targetTransform.localScale, Vector3.one * 1.1f, 0.2f)
-            .BindToLocalScale(targetTransform);
+        SetScale(hoverScale);
+        PlaySound(hoverSound);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        LitMotion.LMotion.Create(targetTransform.localScale, Vector3.one, 0.2f)
-            .BindToLocalScale(targetTransform);
+        SetScale(1f);
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        // Press sound (FMOD removed)
-        if (!pressSound.IsNull)
-        {
-            // AudioManager.PlaySFX(pressSound); // Commented out - AudioManager not found
-        }
+        if (button != null && !button.interactable)
+            return;
 
-        LitMotion.LMotion.Create(targetTransform.localScale, Vector3.one * 0.9f, 0.1f)
-            .BindToLocalScale(targetTransform);
+        SetScale(pressedScale);
+        PlaySound(pressSound);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        // Release sound (FMOD removed)
-        if (!releaseSound.IsNull)
-        {
-            // AudioManager.PlaySFX(releaseSound); // Commented out - AudioManager not found
-        }
+        if (button != null && !button.interactable)
+            return;
 
-        if (eventData.pointerCurrentRaycast.gameObject == gameObject)
+        bool pointerStillOver = eventData.pointerCurrentRaycast.gameObject == gameObject;
+        SetScale(pointerStillOver ? hoverScale : 1f);
+        PlaySound(releaseSound);
+    }
+
+    private void SetScale(float multiplier)
+    {
+        targetTransform.localScale = originalScale * multiplier;
+    }
+
+    private void PlaySound(EventReference eventReference)
+    {
+        if (!eventReference.IsNull)
         {
-            LitMotion.LMotion.Create(targetTransform.localScale, Vector3.one * 1.1f, 0.2f)
-                .BindToLocalScale(targetTransform);
-        }
-        else
-        {
-            LitMotion.LMotion.Create(targetTransform.localScale, Vector3.one, 0.2f)
-                .BindToLocalScale(targetTransform);
+            RuntimeManager.PlayOneShot(eventReference);
         }
     }
 }
